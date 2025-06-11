@@ -22,6 +22,13 @@ public class QuoteService {
         return newQuote;
     }
 
+    public Quote updateQuote (Long id, Quote updatedQuote){
+        Quote existingQuote = getQuoteById(id);
+        existingQuote.setPhrase(updatedQuote.getPhrase());
+        existingQuote.setAuthor(updatedQuote.getAuthor());
+        return quoteRepository.save(existingQuote);
+    }
+
     public Quote getQuoteById(Long id) {
         return quoteRepository.findById(id).orElse(null);
     }

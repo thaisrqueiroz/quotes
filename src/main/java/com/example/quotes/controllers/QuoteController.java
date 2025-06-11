@@ -30,13 +30,13 @@ public class QuoteController {
     }
 
     @GetMapping("/quotes/{id}")
-    public ResponseEntity<Quote> getQuotebyIdController(@PathVariable Long id) {
+    public ResponseEntity<Quote> getQuotebyId(@PathVariable Long id) {
         Quote gotQuote = quoteService.getQuoteById(id);
         return new ResponseEntity<Quote>(gotQuote, HttpStatus.OK);
     }
 
     @DeleteMapping("/quotes/{id}")
-    public ResponseEntity<Quote> deleteQuoteController(@PathVariable Long id){
+    public ResponseEntity<Quote> deleteQuote(@PathVariable Long id){
         Quote deleteQuote = quoteService.getQuoteById(id);
         quoteService.deleteQuoteById(id);
         return new ResponseEntity<Quote>(deleteQuote, HttpStatus.NO_CONTENT);
