@@ -4,14 +4,12 @@ import com.example.quotes.models.Quote;
 import com.example.quotes.services.QuoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+//@RequestMapping("/quotes")
 public class QuoteController {
     private final QuoteService quoteService;
 
@@ -25,9 +23,22 @@ public class QuoteController {
         return new ResponseEntity<List<Quote>>(quotes, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/quotes")
     public ResponseEntity<Quote> addQuote(@RequestBody Quote newQuote){
         Quote createdQuote = quoteService.addQuote(newQuote);
         return new ResponseEntity<Quote>(createdQuote, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/quotes/{id}")
+    public ResponseEntity<Quote> getQuotebyIdController(@PathVariable Long id) {
+        Quote gotQuote = quoteService.getQuoteById(id);
+        return new ResponseEntity<Quote>(gotQuote, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/quotes/{id}")
+    public ResponseEntity<Quote> deleteQuoteController(@PathVariable Long id){
+        Quote deleteQuote = quoteService.getQuoteById(id);
+        quoteService.deleteQuoteById(id);
+        return new ResponseEntity<Quote>(deleteQuote, HttpStatus.NO_CONTENT);
     }
 }

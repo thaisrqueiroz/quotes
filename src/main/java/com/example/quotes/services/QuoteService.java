@@ -18,6 +18,15 @@ public class QuoteService {
     }
 
     public Quote addQuote(Quote newQuote) {
-        return quoteRepository.save(newQuote);
+        quoteRepository.save(newQuote);
+        return newQuote;
+    }
+
+    public Quote getQuoteById(Long id) {
+        return quoteRepository.findById(id).orElse(null);
+    }
+
+    public void deleteQuoteById(Long id) {
+        quoteRepository.deleteById(id);
     }
 }
