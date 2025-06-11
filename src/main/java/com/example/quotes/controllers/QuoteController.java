@@ -5,11 +5,9 @@ import com.example.quotes.services.QuoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-//@RequestMapping("/quotes")
 public class QuoteController {
     private final QuoteService quoteService;
 
