@@ -14,6 +14,11 @@ public class Quote {
     public Quote() {
     }
 
+    public Quote(String phrase, String author) {
+        this.phrase = phrase;
+        this.author = author;
+    }
+
     public Long getId() {
         return id;
     }
