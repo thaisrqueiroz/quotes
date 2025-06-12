@@ -1,5 +1,6 @@
 package com.example.quotes.services;
 
+import com.example.quotes.dtos.QuoteDto;
 import com.example.quotes.models.Quote;
 import com.example.quotes.repositories.QuoteRepository;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,19 @@ public class QuoteService {
         Quote existingQuote = getQuoteById(id);
         existingQuote.setPhrase(updatedQuote.getPhrase());
         existingQuote.setAuthor(updatedQuote.getAuthor());
+        return quoteRepository.save(existingQuote);
+    }
+
+    public Quote updateQuotePartial(Long id, QuoteDto updateDto) {
+        Quote existingQuote = getQuoteById(id);
+
+        if (updateDto.getPhrase() != null) {
+            existingQuote.setPhrase(updateDto.getPhrase());
+        }
+        if (updateDto.getAuthor() != null) {
+            existingQuote.setAuthor(updateDto.getAuthor());
+        }
+
         return quoteRepository.save(existingQuote);
     }
 

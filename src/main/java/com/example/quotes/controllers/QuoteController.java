@@ -1,5 +1,6 @@
 package com.example.quotes.controllers;
 
+import com.example.quotes.dtos.QuoteDto;
 import com.example.quotes.models.Quote;
 import com.example.quotes.services.QuoteService;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,13 @@ public class QuoteController {
         Quote updated = quoteService.updateQuote(id, updatedQuote);
         return new ResponseEntity<Quote>(updated, HttpStatus.OK);
     }
+
+    @PatchMapping("/quotes/{id}")
+    public ResponseEntity<Quote> updateQuotePartial(@PathVariable Long id, @RequestBody QuoteDto quoteDto){
+        Quote existingQuote = quoteService.updateQuotePartial(id, quoteDto);
+        return new ResponseEntity<Quote>(existingQuote, HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/quotes/{id}")
     public ResponseEntity<Quote> deleteQuote(@PathVariable Long id){
