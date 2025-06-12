@@ -17,6 +17,10 @@ public class QuoteService {
         return quoteRepository.findAll();
     }
 
+    public Quote getQuoteById(Long id) {
+        return quoteRepository.findById(id).orElse(null);
+    }
+
     public Quote addQuote(Quote newQuote) {
         quoteRepository.save(newQuote);
         return newQuote;
@@ -27,10 +31,6 @@ public class QuoteService {
         existingQuote.setPhrase(updatedQuote.getPhrase());
         existingQuote.setAuthor(updatedQuote.getAuthor());
         return quoteRepository.save(existingQuote);
-    }
-
-    public Quote getQuoteById(Long id) {
-        return quoteRepository.findById(id).orElse(null);
     }
 
     public void deleteQuoteById(Long id) {

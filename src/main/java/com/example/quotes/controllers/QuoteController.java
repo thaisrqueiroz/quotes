@@ -21,6 +21,12 @@ public class QuoteController {
         return new ResponseEntity<List<Quote>>(quotes, HttpStatus.OK);
     }
 
+    @GetMapping("/quotes/{id}")
+    public ResponseEntity<Quote> getQuotebyId(@PathVariable Long id) {
+        Quote gotQuote = quoteService.getQuoteById(id);
+        return new ResponseEntity<Quote>(gotQuote, HttpStatus.OK);
+    }
+
     @PostMapping("/quotes")
     public ResponseEntity<Quote> addQuote(@RequestBody Quote newQuote){
         Quote createdQuote = quoteService.addQuote(newQuote);
@@ -31,12 +37,6 @@ public class QuoteController {
     public ResponseEntity<Quote> updateQuote(@PathVariable Long id, @RequestBody Quote updatedQuote){
         Quote updated = quoteService.updateQuote(id, updatedQuote);
         return new ResponseEntity<Quote>(updated, HttpStatus.OK);
-    }
-
-    @GetMapping("/quotes/{id}")
-    public ResponseEntity<Quote> getQuotebyId(@PathVariable Long id) {
-        Quote gotQuote = quoteService.getQuoteById(id);
-        return new ResponseEntity<Quote>(gotQuote, HttpStatus.OK);
     }
 
     @DeleteMapping("/quotes/{id}")
